@@ -93,7 +93,7 @@ module.exports = class Starling {
       .then(result => result['access_token']);
   }
 
-  getTransactions (from = null, to = null, token = '') {
+  getTransactions ({ from = null, to = null } = {}, token = '') {
     return this._exchangeRefreshToken(token)
       .then(refreshToken => {
         const opts = {
