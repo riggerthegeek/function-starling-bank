@@ -24,6 +24,7 @@ function secretOrEnvvar (secretFile, envvar) {
 
 const config = {
   baseUrl: process.env.BASE_URL,
+  exchangeTokens: process.env.EXCHANGE_TOKENS !== 'false',
   clientId: secretOrEnvvar('/run/secrets/starling_client_id', 'CLIENT_ID'),
   clientSecret: secretOrEnvvar('/run/secrets/starling_client_secret', 'CLIENT_SECRET'),
   userAgent: 'OpenFAAS-starling'

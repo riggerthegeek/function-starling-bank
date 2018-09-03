@@ -19,6 +19,7 @@ module.exports = class Starling {
       baseUrl: config.baseUrl,
       clientId: config.clientId,
       clientSecret: config.clientSecret,
+      exchangeTokens: config.exchangeTokens,
       refreshToken,
       userAgent: config.userAgent
     };
@@ -62,7 +63,10 @@ module.exports = class Starling {
    * Exchange Refresh Token
    *
    * Exchanges the refresh token (which never expires) for
-   * an access token (which does)
+   * an access token (which does). If the config.exchangeTokens
+   * is set to false, tokens will not be exchanged. This is to
+   * be done if you are using a personal access token or any
+   * other token that will never expire.
    *
    * @param {string} token
    * @returns {Promise<string>}
@@ -71,6 +75,10 @@ module.exports = class Starling {
   _exchangeRefreshToken (token = '') {
     return Promise.resolve()
       .then(() => {
+        if (!this.config.exchangeTokens) {
+          return token;
+        }
+
         if (token) {
           return {
             'access_token': token
