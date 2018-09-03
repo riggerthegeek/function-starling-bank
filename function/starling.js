@@ -73,12 +73,12 @@ module.exports = class Starling {
    * @private
    */
   _exchangeRefreshToken (token = '') {
+    if (!this.config.exchangeTokens) {
+      return Promise.resolve(token);
+    }
+
     return Promise.resolve()
       .then(() => {
-        if (!this.config.exchangeTokens) {
-          return token;
-        }
-
         if (token) {
           return {
             'access_token': token
@@ -101,8 +101,8 @@ module.exports = class Starling {
       .then(result => result['access_token']);
   }
 
-  getTransactions ({ from = null, to = null } = {}, token = '') {
-    return this._exchangeRefreshToken(token)
+  getTransactions ({ from = null, to = null } = {}) {
+    return this._exchangeRefreshToken(this.config.refreshToken)
       .then(refreshToken => {
         const opts = {
           qs: {},
