@@ -55,6 +55,7 @@ serve:
 		-e "BASE_URL=${BASE_URL}" \
 		-e "CLIENT_ID=${CLIENT_ID}" \
 		-e "CLIENT_SECRET=${CLIENT_SECRET}" \
+		-e "EXCHANGE_TOKENS=${EXCHANGE_TOKENS}" \
 		-it --rm \
 		${TAG_NAME}:linux-amd64-latest sh -c \
 		"echo '${INPUT}' | node index.js"
