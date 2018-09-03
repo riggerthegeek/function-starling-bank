@@ -1,6 +1,6 @@
 {
   "name": "function-starling-bank",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OpenFaaS tasks for accessing Starling Bank",
   "main": "./function/handler.js",
   "scripts": {
